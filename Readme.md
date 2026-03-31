@@ -165,7 +165,6 @@ Jammu & Kashmir shows a 58.47% churn rate — double the company national averag
 | `Customer_Churn_Analysis.sql` | All SQL queries — data cleaning, metrics, and analysis |
 | `Customer_Churn_Analysis.pbix` | Interactive Power BI dashboard (5 pages) |
 | `Customer_Data.csv` | Raw dataset — 6,418 rows, 32 columns |
-| `Churn_Dashboard.html` | Browser-based interactive dashboard |
 | `README.md` | Project documentation |
 
 ---
