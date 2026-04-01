@@ -25,25 +25,60 @@ SELECT
     COUNT(CASE WHEN streaming_tv = '' THEN 1 END) AS tv_blanks
 FROM customer_data;
 
--- 1. Checked for negative monthly charges
+-- Check for duplicate Customer IDs
+SELECT Customer_ID, COUNT(*) AS count
+FROM customer_data
+GROUP BY Customer_ID
+HAVING COUNT(*) > 1;
+-- Result: 0 duplicates — each Customer_ID is unique
+
+-- Check NULL counts across key columns
+SELECT 
+    SUM(CASE WHEN Customer_ID IS NULL THEN 1 ELSE 0 END)      AS null_customer_id,
+    SUM(CASE WHEN Monthly_Charge IS NULL THEN 1 ELSE 0 END)   AS null_monthly_charge,
+    SUM(CASE WHEN Customer_Status IS NULL THEN 1 ELSE 0 END)  AS null_status,
+    SUM(CASE WHEN Contract IS NULL THEN 1 ELSE 0 END)         AS null_contract,
+    SUM(CASE WHEN Total_Revenue IS NULL THEN 1 ELSE 0 END)    AS null_revenue
+FROM customer_data;
+-- Result: Only Monthly_Charge has 1 NULL (the negative value we set to NULL)
+
+-- Check for outliers in Age
+SELECT 
+    MIN(Age) AS min_age,
+    MAX(Age) AS max_age,
+    ROUND(AVG(Age), 1) AS avg_age
+FROM customer_data;
+
+
+-- Check distinct values in key categorical columns
+SELECT DISTINCT Customer_Status FROM customer_data;
+-- Result: Churned, Stayed, Joined
+
+SELECT DISTINCT Contract FROM customer_data;
+-- Result: Month-to-Month, One Year, Two Year
+
+SELECT DISTINCT Internet_Type FROM customer_data;
+-- Result: Cable, Fiber Optic, DSL, None
+
+-- Checked for negative monthly charges
 SELECT COUNT(*) FROM customer_data WHERE monthly_charge <= 0;
 -- Found: 1 row with -$4 charge -- set to NULL
 
--- 2. Checked service columns for empty strings
+-- Checked service columns for empty strings
 SELECT COUNT(*) FROM customer_data WHERE online_security = '';
 -- Found: 1,390 empty strings -- updated to 'Not Applicable'
 -- Reason: customers without internet service cannot have online security
 
--- 3. Verified unique status of customers
+--  Verified unique status of customers
 select distinct customer_status from customer_data;
 -- Excluded 'Joined' customers from churn analysis
 -- Reason: joined customers have not completed a billing cycle
 --         including them would understate churn rate
 
--- 4. Verified tenure range: MIN=1, MAX=36 months
+--  Verified tenure range: MIN=1, MAX=36 months
 SELECT MAX(Tenure_in_Months), MIN(Tenure_in_Months)
 FROM Customer_Data;
--- 5. Verified minimum and maximum monthly charge range: MIN=$18.25, MAX=$118.75
+--  Verified minimum and maximum monthly charge range: MIN=$18.25, MAX=$118.75
 SELECT MAX(monthly_charge), MIN(monthly_charge)
 FROM Customer_Data
 where monthly_charge > 0;
