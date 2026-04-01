@@ -26,46 +26,50 @@ SELECT
 FROM customer_data;
 
 -- Check for duplicate Customer IDs
-SELECT Customer_ID, COUNT(*) AS count
-FROM customer_data
-GROUP BY Customer_ID
-HAVING COUNT(*) > 1;
--- Result: 0 duplicates — each Customer_ID is unique
+-- Check for duplicate Customer IDs
+select Customer_ID, count(*) as count
+from customer_data
+group by Customer_ID
+having count(*) > 1;
+-- Result: 0 rows — no duplicate Customer IDs found
+-- Every customer has a unique identifier
 
 -- Check NULL counts across key columns
-SELECT 
-    SUM(CASE WHEN Customer_ID IS NULL THEN 1 ELSE 0 END)      AS null_customer_id,
-    SUM(CASE WHEN Monthly_Charge IS NULL THEN 1 ELSE 0 END)   AS null_monthly_charge,
-    SUM(CASE WHEN Customer_Status IS NULL THEN 1 ELSE 0 END)  AS null_status,
-    SUM(CASE WHEN Contract IS NULL THEN 1 ELSE 0 END)         AS null_contract,
-    SUM(CASE WHEN Total_Revenue IS NULL THEN 1 ELSE 0 END)    AS null_revenue
+select 
+    sum(case when Customer_ID is null then 1 else 0 end)      as null_customer_id,
+    sum(case when Monthly_Charge is null then 1 else 0 end)   as null_monthly_charge,
+    sum(case when Customer_Status is null then 1 else 0 end)  as null_status,
+    sum(case when Contract is null then 1 else 0 end)         as null_contract,
+    sum(case when Total_Revenue is null then 1 else 0 end)    as null_revenue
 FROM customer_data;
 -- Result: Only Monthly_Charge has 1 NULL (the negative value we set to NULL)
 
 -- Check for outliers in Age
-SELECT 
-    MIN(Age) AS min_age,
-    MAX(Age) AS max_age,
-    ROUND(AVG(Age), 1) AS avg_age
-FROM customer_data;
+select 
+    min(Age) as min_age,
+    max(Age) as max_age,
+    round(AVG(Age), 1) as avg_age
+from customer_data;
+-- Result: Min age: 18, max age: 85, and average age: 47.1
+-- No outliers detected -- age range is realistic for telecom customers
 
 
 -- Check distinct values in key categorical columns
-SELECT DISTINCT Customer_Status FROM customer_data;
+select distinct  Customer_Status from customer_data;
 -- Result: Churned, Stayed, Joined
 
-SELECT DISTINCT Contract FROM customer_data;
+select distinct  Contract from customer_data;
 -- Result: Month-to-Month, One Year, Two Year
 
-SELECT DISTINCT Internet_Type FROM customer_data;
+select distinct Internet_Type from customer_data;
 -- Result: Cable, Fiber Optic, DSL, None
 
 -- Checked for negative monthly charges
-SELECT COUNT(*) FROM customer_data WHERE monthly_charge <= 0;
+select count(*) from customer_data where monthly_charge <= 0;
 -- Found: 1 row with -$4 charge -- set to NULL
 
 -- Checked service columns for empty strings
-SELECT COUNT(*) FROM customer_data WHERE online_security = '';
+select count(*) from customer_data where online_security = '';
 -- Found: 1,390 empty strings -- updated to 'Not Applicable'
 -- Reason: customers without internet service cannot have online security
 
@@ -76,14 +80,28 @@ select distinct customer_status from customer_data;
 --         including them would understate churn rate
 
 --  Verified tenure range: MIN=1, MAX=36 months
-SELECT MAX(Tenure_in_Months), MIN(Tenure_in_Months)
-FROM Customer_Data;
+select max(Tenure_in_Months), min(Tenure_in_Months)
+from Customer_Data;
 --  Verified minimum and maximum monthly charge range: MIN=$18.25, MAX=$118.75
-SELECT MAX(monthly_charge), MIN(monthly_charge)
-FROM Customer_Data
+select max(monthly_charge), min(monthly_charge)
+from Customer_Data
 where monthly_charge > 0;
 
+-- NULL Monthly Charge Investigation
+select 
+    Customer_Status,
+    count(*) as null_charge_count
+from customer_data
+where Monthly_Charge is null
+group by Customer_Status;
 
+-- Result: Stayed: 74 | Churned: 27 | Joined: 6 | Total: 107
+-- Finding: NULL charges spread across all customer statuses
+-- indicating a data quality/billing system issue
+-- Decision: Excluded from price-based analysis using 
+-- IS NOT NULL filter. Remaining metrics unaffected.
+-- Action: In production environment would flag to data 
+-- engineering team to investigate root cause.
 -- =============================================
 -- METRIC 1: Overall Churn Rate
 -- Business Question: What is the overall churn rate?
