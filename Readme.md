@@ -2,7 +2,7 @@
 
 ## Project Background
 
-Vertex Telecom Solutions is an imaginary telecom company established in 2020 that sells connectivity services including phone, internet, and streaming services across India via a mobile app.
+Vertex Telecom Solutions is a telecom company established in 2020 that sells connectivity services including phone, internet, and streaming services, across India via a mobile app.
 
 **Business Problem:** Vertex Telecom Solutions is currently experiencing a churn rate of 28.83%, exceeding the industry benchmark of 25%, resulting in $3.4M in lost revenue from 1,732 churned customers.
 
@@ -41,7 +41,17 @@ The dataset contains 6,418 rows and 32 columns covering customer demographics, s
 
 ## Executive Summary
 
-Vertex Telecom Solutions is losing 28.83% of its customers — above the 25% industry benchmark — resulting in $3.4M in lost revenue. The analysis reveals that Month-to-Month contract customers churn at 52.38%, making contract type the strongest predictor of churn. Customers without Online Security or Premium Support churn at approximately 45% compared to 15% for those with these services — a 30 percentage point difference. Competitor pressure drives 44% of all churn, while Jammu & Kashmir shows a 58.47% churn rate — double the company's national average.
+Analysis of 6,418 customer records identified a churn rate of 28.83%, exceeding the 25% industry benchmark and 
+representing $3.4M in lost revenue from 1,732 churned customers.
+
+Key finding: Churned customers pay significantly more per month ($74.34) than retained customers ($63.03), indicating the 
+business is losing its highest-value customers first.
+
+Month-to-Month contract holders churn at 52.38% — more than double the industry benchmark — making contract type the 
+strongest predictor of churn. Competitor pressure drives 44% of all churn, while customers without Online Security churn 
+at 3x the rate of those with it.
+
+Five targeted retention recommendations are provided based on these findings.
 
 ![Executive Summary](Dashboard_Page1.png)
 
