@@ -86,9 +86,6 @@ Five targeted retention recommendations are provided based on these findings.
 ### 2. Why Are Customers Churning?
 
 
-![Churn Reasons](Dashboard_Page3.png)
-
-
 
 | Category | Churned Customers | % of Total Churn |
 |---|---|---|
