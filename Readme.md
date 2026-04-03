@@ -187,5 +187,11 @@ Jammu & Kashmir shows a 58.47% churn rate — double the company national averag
 
 ## Author
 
-**Anmisha**
+## Author
+
+**Anmisha Mandalapu**
 Data Analyst | SQL · Power BI · Excel
+
+📧 anmishamandalapu@gmail.com
+🔗 [LinkedIn](https://www.linkedin.com/in/anmishamandalapu)
+🐙 [GitHub](https://github.com/Anmishaa12)
