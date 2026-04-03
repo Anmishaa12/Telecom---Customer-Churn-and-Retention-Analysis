@@ -14,7 +14,7 @@ This project analyzes the following key areas:
 - Geographic segmentation to identify high churn states and regional patterns
 
 An interactive Power BI dashboard (.pbix) is available in this repository. 
-Dashboard screenshots are embedded below across each section. (Customer_Churn_Analysis.pbix).
+Dashboard screenshots are embedded below across each section. [here](Customer_Churn_Analysis.pbix).
 
 The SQL queries used for data cleaning and analysis can be found [here](Customer_Churn_Analysis.sql).
 
@@ -79,6 +79,8 @@ Five targeted retention recommendations are provided based on these findings.
 - 0–12 months: 29.14% | 13–24 months: 28.25% | 25–36 months: 29.01%
 - Long-term customers are just as likely to leave as new customers — the company has no loyalty mechanism
 
+
+![Who is Churning](Dashboard_Page2.png)
 ---
 
 ### 2. Why Are Customers Churning?
@@ -117,6 +119,8 @@ Competitor-driven churn is an external market problem. Attitude-related churn (3
 
 Online Security and Premium Support reduce churn by approximately 30 percentage points. Streaming services show only a 6 point difference — not strong enough to be a reliable retention tool.
 
+
+![Why are Customers Churning](Dashboard_Page3.png)
 ---
 
 ### 4. Revenue Impact
@@ -130,6 +134,8 @@ Online Security and Premium Support reduce churn by approximately 30 percentage 
 - Churned customers pay **$74.34/month** on average vs **$63.03** for retained customers
 - Despite paying more per month, churned customers generate less lifetime revenue ($1,969 vs $3,745) because they leave before creating long-term value
 
+
+![Revenue Impact](Dashboard_Page4.png)
 ---
 
 ### 5. Geographic Analysis
@@ -145,6 +151,8 @@ Online Security and Premium Support reduce churn by approximately 30 percentage 
 
 Jammu & Kashmir shows a 58.47% churn rate — double the company national average of 28.83%. Two possible explanations: competitor pressure (better devices and offers) and network quality gaps specific to that region.
 
+
+![Geographical Segmentation](Dashboard_Page5.png)
 ---
 
 ## Business Recommendations
