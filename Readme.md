@@ -13,7 +13,8 @@ This project analyzes the following key areas:
 - Service adoption analysis — impact of Online Security and Premium Support on customer retention
 - Geographic segmentation to identify high churn states and regional patterns
 
-An interactive Power BI dashboard can be downloaded [here](Customer_Churn_Analysis.pbix).
+An interactive Power BI dashboard (.pbix) is available in this repository. 
+Dashboard screenshots are embedded below across each section. (Customer_Churn_Analysis.pbix).
 
 The SQL queries used for data cleaning and analysis can be found [here](Customer_Churn_Analysis.sql).
 
