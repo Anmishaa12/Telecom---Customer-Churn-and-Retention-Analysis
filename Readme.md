@@ -14,7 +14,7 @@ This project analyzes the following key areas:
 - Geographic segmentation to identify high churn states and regional patterns
 
 An interactive Power BI dashboard (.pbix) is available in this repository. 
-Dashboard screenshots are embedded below across each section. [here](Customer_Churn_Analysis.pbix).
+Dashboard screenshots are embedded below across each section.
 
 The SQL queries used for data cleaning and analysis can be found [here](Customer_Churn_Analysis.sql).
 
@@ -185,7 +185,6 @@ Jammu & Kashmir shows a 58.47% churn rate — double the company national averag
 
 ---
 
-## Author
 
 ## Author
 
